@@ -5,9 +5,12 @@ class Conexion {
     private $password;
     private $objetoConexion;
     public function __construct() {
-        $this->cadenaConexion = 'mysql:host=localhost;dbname=asociac1_liganorte';
-        $this->user = "asociac1";
-        $this->password = "fnz8D5F2r6";
+        $this->cadenaConexion = 'mysql:host=localhost;dbname=liga';
+        $this->user = "root";
+        $this->password = "";
+//        $this->cadenaConexion = 'mysql:host=localhost;dbname=asociac1_liganorte';
+//        $this->user = "asociac1";
+//        $this->password = "fnz8D5F2r6";
     }
     public function conectar() {
         try {

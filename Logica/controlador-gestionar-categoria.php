@@ -8,10 +8,11 @@ try {
     switch ($_POST ['tipo']) {
         case 'ingresar' :
             $nombre = $_POST["Nombre"];
+            $codigo = preg_replace('/\s+/', '', $nombre);
             $ListaClubDeportivo = $_POST["ListaClub"];
-            $conexion->setCategoria($nombre);
+            $conexion->setCategoria($codigo,$nombre);
             for ($i = 0; $i < count($ListaClubDeportivo); $i++) {
-                $conexion->setEquipo($nombre . $ListaClubDeportivo[$i], $nombre, $ListaClubDeportivo[$i]);
+                $conexion->setEquipo($codigo . $ListaClubDeportivo[$i], $codigo, $ListaClubDeportivo[$i]);
             }
             echo "ingresado";
             break;

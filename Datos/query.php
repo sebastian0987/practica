@@ -476,11 +476,11 @@ class query
 //            throw $e;
 //        }
 //    }
-    public function setCategoria($nombre)
+    public function setCategoria($codigo,$nombre)
     {
         try {
             $this->bdConexion->conectar();
-            $strComando = "INSERT INTO categoria (codigoCategoria,nombreCategoria) VALUES ('" . $nombre . "','" . $nombre . "')";
+            $strComando = "INSERT INTO categoria (codigoCategoria,nombreCategoria) VALUES ('" . $codigo . "','" . $nombre . "')";
             $resp = $this->bdConexion->ejecutarSinRetorno($strComando);
             $this->bdConexion->desconectar();
         } catch (Exception $e) {
