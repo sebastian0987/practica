@@ -1,20 +1,42 @@
+body {
+    background: url('../image/image-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
 img{
+    float: left;
+    height: 350px;
+    width: 350px;
+}
+
+#tablaDatos,#tablaDirigente{
     float: left;
 }
 
-#listaJugadores,#tablaPequeña{
+.well{
+    text-align: center;
+}
+
+#listaJugadores{
     display: none;
 }
 
-@media (max-width: 400px)
-{
-    img,#tablaGrande{
-        display: none;
-    }
+/*#listaJugadores,#tablaPequeña{*/
+    /*display: none;*/
+/*}*/
 
-    #tablaPequeña{
-        display: inherit;
-        font-size: xx-small;
-    }
+/*@media (max-width: 500px)*/
+/*{*/
+    /*img,#tablaGrande{*/
+        /*display: none;*/
+    /*}*/
 
-}
+    /*#tablaPequeña{*/
+        /*display: inherit;*/
+        /*font-size: xx-small;*/
+    /*}*/
+
+/*}*/

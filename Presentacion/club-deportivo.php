@@ -6,9 +6,9 @@ include "menuGlobal.php";
 
 <html>
 
-<!--<head>-->
-<!--    <link href="css/club-deportivo.css" rel="stylesheet">-->
-<!--</head>-->
+<head>
+    <link href="css/club-deportivo.css" rel="stylesheet">
+</head>
 
 <body>
 
@@ -18,15 +18,15 @@ include "menuGlobal.php";
 
 <div class="row">
     <div class=col-lg-6">
-        <IMG id="escudoClubDeportivo" style="float: left" height="350" width="350">
-        <div class="panel panel-success"  style="float: left">
+        <IMG id="escudoClubDeportivo">
+        <div id="tablaDatos" class="panel panel-success" >
             <div class="panel-heading">
                 <h3 class="panel-title">Datos</h3>
             </div>
             <div class="panel-body" id="datosClub"></div>
         </div>
 
-        <div class="panel panel-success"  style="float: left">
+        <div id="tablaDirigente" class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">Dirigentes</h3>
             </div>
@@ -102,7 +102,7 @@ include "menuGlobal.php";
 <div class="row">
     <div class="page-header">
     </div>
-    <div class="well" style="text-align: center">
+    <div class="well">
         <p>Union Comunal Deportiva Vecinal Liga Sector Norte * R.U.T.: 72.470.300-3 * Numero Contacto: 97105118 *
             Correo: liganorteantofagasta@gmail.com * Fecha Fundacion: 07/01/1977 * Personalidad Jurídica Nº358</p>
     </div>
