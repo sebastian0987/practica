@@ -9,3 +9,10 @@ body {
 .well{
     text-align: center;
 }
+
+/*Se define las distancia del calendario con el escudo y la tabla de posiciones,
+y se define que en caso de que la informacion dentro del panel supere el tamaño del panel se cree la posibilidad de scroll*/
+.panel-success{
+    margin-top: 50px;
+    overflow-y: scroll;
+}
