@@ -25,7 +25,7 @@ include "menuGlobal.php";
     <div class="row form-group product-chooser" id="contenedor">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="product-chooser-item selected">
-                <img src="http://plainicon.com/download-icons/46266/plainicon.com-46266-0561-256px.png" id="liga" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Mobile and Desktop">
+                <img src="image/torneo-liga.png" id="liga" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Mobile and Desktop">
                 <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12">
                     <span class="title" align="center">Liga</span>
                     <span class="description">Competición del todos contra todos. Gana el que consigue más puntos.</span>
@@ -37,7 +37,7 @@ include "menuGlobal.php";
 
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="product-chooser-item">
-                <img src="http://plainicon.com/download-icons/52561/plainicon.com-52561-4b10-512px.png" id="eliminacion" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Desktop">
+                <img src="image/torneo-eliminacion.png" id="eliminacion" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Desktop">
                 <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12">
                     <span class="title" align="center">Eliminación Directa</span>
                     <span class="description">Los equipos avanzan si ganan cada partido y quedan eliminados a la primera derrota.</span>
@@ -49,7 +49,7 @@ include "menuGlobal.php";
 
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="product-chooser-item">
-                <img src="http://plainicon.com/download-icons/54366/plainicon.com-54366-f575-256px.png" id="grupos" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Mobile">
+                <img src="image/torneo-grupo.png" id="grupos" class="img-rounded col-xs-4 col-sm-4 col-md-12 col-lg-12" alt="Mobile">
                 <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12">
                     <span class="title" align="center">Por Grupos</span>
                     <span class="description">Se juega una fase de grupos, luego eliminación directa con los equipos resultantes de cada grupo.</span>
