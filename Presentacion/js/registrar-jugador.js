@@ -174,10 +174,11 @@ function ingresarJugador(accion, rut, nombre, codigoEquipo, fechaNacimiento, fec
             return;
         } else {
             if (data == "repetido") {
-                document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
-                document.getElementById("h4Error").innerHTML = "Error";
-                document.getElementById("pError").innerHTML = "Ya existe un Jugador con el mismo rut en el sistema.";
-                $('#modalMensaje').modal('show');
+                obtenerDatosJugador(rut);
+                // document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
+                // document.getElementById("h4Error").innerHTML = "Error";
+                // document.getElementById("pError").innerHTML = "Ya existe un Jugador con el mismo rut en el sistema.";
+                // $('#modalMensaje').modal('show');
                 return;
             } else {
                 document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
