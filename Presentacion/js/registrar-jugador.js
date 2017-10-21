@@ -207,10 +207,11 @@ function verificarRut(rut) {
             return;
         } else {
             if (data == "repetido") {
-                document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
-                document.getElementById("h4Error").innerHTML = "Error";
-                document.getElementById("pError").innerHTML = "Ya existe un Jugador con el mismo rut en el sistema.";
-                $('#modalMensaje').modal('show');
+                obtenerDatosJugador(rut);
+                // document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
+                // document.getElementById("h4Error").innerHTML = "Error";
+                // document.getElementById("pError").innerHTML = "Ya existe un Jugador con el mismo rut en el sistema.";
+                // $('#modalMensaje').modal('show');
                 return;
             } else {
                 document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
@@ -260,6 +261,25 @@ function obtenerListaCategorias() {
     });
 }
 
+function obtenerDatosJugador(rut) {
+    $.ajax({
+        type: "POST",
+        url: "../Logica/controlador-gestionar-jugador.php",
+        data: {
+            tipo: "obtenerJugador",
+            Rut:rut
+        }
+    }).done(function (data) {
+        var opts = $.parseJSON(data);
+        document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
+        document.getElementById("h4Error").innerHTML = "Error";
+        document.getElementById("pError").innerHTML = "Ya existe un Jugador con el mismo rut en el sistema: " +
+            "Su nombre es " + opts[0].nombrePersona +
+            ", pertenece al club "+opts[0][9] +
+            " esta inscrito en la categoría "+ opts[0][7] ;
+        $('#modalMensaje').modal('show');
+    });
+}
 function limpiarCampos() {
     document.getElementById("tbRut").value = "";
     document.getElementById("tbNombre").value = "";
