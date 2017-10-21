@@ -207,7 +207,7 @@ function verificarRut(rut) {
             return;
         } else {
             if (data == "repetido") {
-                obtenerDatosJugador(rut);
+                obtenerDatosJugador(rut)
                 // document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
                 // document.getElementById("h4Error").innerHTML = "Error";
                 // document.getElementById("pError").innerHTML = "Ya existe un Jugador con el mismo rut en el sistema.";
@@ -276,7 +276,7 @@ function obtenerDatosJugador(rut) {
         document.getElementById("pError").innerHTML = "Ya existe un Jugador con el mismo rut en el sistema: " +
             "Su nombre es " + opts[0].nombrePersona +
             ", pertenece al club "+opts[0][9] +
-            " esta inscrito en la categoría "+ opts[0][7] ;
+            " y esta inscrito en la categoría "+ opts[0][7] ;
         $('#modalMensaje').modal('show');
     });
 }
