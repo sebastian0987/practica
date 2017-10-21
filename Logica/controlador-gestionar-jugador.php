@@ -18,22 +18,32 @@ try {
             $rolAndaba = $_POST["RolAndaba"];
             $fotoJugador = "";
             $respuesta = $conexion->getJugador($rut);
-            if (count ( $respuesta ) > 0) {
+            if (count($respuesta) > 0) {
                 echo "repetido";
                 return;
             } else {
                 $respuesta = $conexion->getPersona($rut);
-                if (count ( $respuesta ) < 1) {
-                    $conexion->setPersona($rut,$nombre);
+                if (count($respuesta) < 1) {
+                    $conexion->setPersona($rut, $nombre);
                 }
-                $conexion->setJugador($rut,$fechaNac,$fechaIns,$rolJugador,$rolAndaba,$fotoJugador,$equipo);
+                $conexion->setJugador($rut, $fechaNac, $fechaIns, $rolJugador, $rolAndaba, $fotoJugador, $equipo);
                 echo "ingresado";
+            }
+            break;
+        case 'verificarRut' :
+            $rut = $_POST ["Rut"];
+            $respuesta = $conexion->getJugador($rut);
+            if (count($respuesta) > 0) {
+                echo "repetido";
+                return;
+            } else {
+                echo 'limpio';
             }
             break;
         case 'obtenerEquipo' :
             $categoria = $_POST["Categoria"];
             $clubDeportivo = $_POST["Club"];
-            $respuesta = $conexion->getEquipo($categoria,$clubDeportivo);
+            $respuesta = $conexion->getEquipo($categoria, $clubDeportivo);
             echo $respuesta[0][0];
             break;
         case 'obtenerClubes' :
@@ -48,11 +58,11 @@ try {
         case 'obtenerJugador':
             $rut = $_POST ["Rut"];
             $respuesta = $conexion->getJugador($rut);
-            if (count ( $respuesta ) == 0) {
+            if (count($respuesta) == 0) {
                 echo "vacio";
                 return;
-            }else{
-                if ($respuesta[0][6] != ""){
+            } else {
+                if ($respuesta[0][6] != "") {
                     $equipo = $conexion->getEquipoSegunJugador($respuesta[0][6]);
                     $respuesta[0][6] = $equipo[0][0];
                     $respuesta[0][7] = $equipo[0][1];
@@ -69,8 +79,8 @@ try {
             $fechaNac = $_POST ["FechaNacimiento"];
             $fechaIns = $_POST ["FechaInscripcion"];
             $fechaSancion = $_POST ["FechaSancion"];
-            $conexion->updateJugador($rut,$equipo,$fechaNac,$fechaIns,$fechaSancion);
-            $conexion->updatePersona($rut,$nombre);
+            $conexion->updateJugador($rut, $equipo, $fechaNac, $fechaIns, $fechaSancion);
+            $conexion->updatePersona($rut, $nombre);
             echo "modificado";
             break;
         case 'obtenerSancion':
@@ -82,13 +92,13 @@ try {
             $rut = $_POST ["Rut"];
             $conexion->deleteJugador($rut);
             $respuesta = $conexion->getDirigente($rut);
-            if (count ( $respuesta ) < 1) {
+            if (count($respuesta) < 1) {
                 $conexion->deletePersona($rut);
             }
             echo "eliminado";
             break;
     }
-} catch ( Exception $e ) {
+} catch (Exception $e) {
     echo $e;
 }
 ?>

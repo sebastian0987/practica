@@ -85,12 +85,27 @@ $(document).ready(function () {
         //
         // };
     });
+
+    $('#btVerificarRut').click(function () {
+        if (document.getElementById("tbRut").value != "") {
+            if (!validarRut(document.getElementById("tbRut").value)) {
+                document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
+                document.getElementById("h4Error").innerHTML = "Error";
+                document.getElementById("pError").innerHTML = "El RUT ingresado no es valido.";
+                $('#modalMensaje').modal('show');
+                return;
+            }
+            verificarRut(document.getElementById("tbRut").value)
+        }
+    });
+
     $('#btConfirmar').click(function () {
         obtenerCodigoEquipo(
             document.getElementById("dropdownCategoria").value,
             document.getElementById("dropdownClub").value
         );
     });
+
 });
 
 function validarRut(rutCompleto) {
@@ -175,6 +190,39 @@ function ingresarJugador(accion, rut, nombre, codigoEquipo, fechaNacimiento, fec
     });
 }
 
+function verificarRut(rut) {
+    $.ajax({
+        type: "POST",
+        url: "../Logica/controlador-gestionar-jugador.php",
+        data: {
+            tipo: "verificarRut",
+            Rut: rut
+        }
+    }).done(function (data) {
+        if (data == "limpio") {
+            document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#DFF2BF";
+            document.getElementById("h4Error").innerHTML = "Éxito";
+            document.getElementById("pError").innerHTML = "No existen problemas con el RUT, puede continuar.";
+            $('#modalMensaje').modal('show');
+            return;
+        } else {
+            if (data == "repetido") {
+                document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
+                document.getElementById("h4Error").innerHTML = "Error";
+                document.getElementById("pError").innerHTML = "Ya existe un Jugador con el mismo rut en el sistema.";
+                $('#modalMensaje').modal('show');
+                return;
+            } else {
+                document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
+                document.getElementById("h4Error").innerHTML = "Error";
+                document.getElementById("pError").innerHTML = "Han surgido problemas al intentar ingresar el jugador, vuelva a intentarlo mas tarde.";
+                $('#modalMensaje').modal('show');
+                return;
+            }
+        }
+    });
+}
+
 function obtenerListaClubes(categoria) {
     $('#dropdownClub').empty();
     $('#dropdownClub').append('<option disabled selected value> -- seleccione una opción -- </option>');
@@ -193,6 +241,7 @@ function obtenerListaClubes(categoria) {
         });
     });
 }
+
 
 function obtenerListaCategorias() {
     $.ajax({

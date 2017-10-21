@@ -14,30 +14,44 @@ include "menuGlobal.php";
 </div>
 <div class="row">
     <div class="col-lg-3">
-        <div class="form-group">
-            <label>Nombre Completo <i id="advertencia1" class="fa fa-exclamation-triangle" aria-hidden="true" style="color: transparent"></i></label>
-            <input id="tbNombre" class="form-control" placeholder="Andrés Aguilera Méndez" maxlength="50">
-        </div>
-<!--        <div class="form-group">-->
-<!--            <label>Apellidos <i id="advertencia2" class="fa fa-exclamation-triangle" aria-hidden="true"></i></label>-->
-<!--            <input id="tbApellidos" class="form-control" placeholder="Aguilera Méndez" maxlength="30">-->
-<!--        </div>-->
-        <div class="form-group">
+        <div>
             <label>RUT (Ingresar sin guion)<i id="advertencia2" class="fa fa-exclamation-triangle"
                                               aria-hidden="true" style="color: transparent"></i></label>
-            <input id="tbRut" class="form-control" placeholder="12345678k" maxlength="9">
+            <div class="input-group">
+                <input id="tbRut" type="text" class="form-control" placeholder="12345678k" maxlength="9">
+                <span class="input-group-btn">
+                <button id="btVerificarRut" class="btn btn-info" type="button">Verificar</button>
+            </span>
+            </div>
+            <br>
         </div>
         <div class="form-group">
-            <label>Categoria<i id="advertencia3" class="fa fa-exclamation-triangle" aria-hidden="true" style="color: transparent"></i>
+            <label>Nombre Completo <i id="advertencia1" class="fa fa-exclamation-triangle" aria-hidden="true"
+                                      style="color: transparent"></i></label>
+            <input id="tbNombre" class="form-control" placeholder="Andrés Aguilera Méndez" maxlength="50">
+        </div>
+        <!--        <div class="form-group">-->
+        <!--            <label>Apellidos <i id="advertencia2" class="fa fa-exclamation-triangle" aria-hidden="true"></i></label>-->
+        <!--            <input id="tbApellidos" class="form-control" placeholder="Aguilera Méndez" maxlength="30">-->
+        <!--        </div>-->
+        <!--        <div class="form-group">-->
+        <!--            <label>RUT (Ingresar sin guion)<i id="advertencia2" class="fa fa-exclamation-triangle"-->
+        <!--                                              aria-hidden="true" style="color: transparent"></i></label>-->
+        <!--            <input id="tbRut" class="form-control" placeholder="12345678k" maxlength="9">-->
+        <!--        </div>-->
+        <div class="form-group">
+            <label>Categoria<i id="advertencia3" class="fa fa-exclamation-triangle" aria-hidden="true"
+                               style="color: transparent"></i>
             </label>
             <select id="dropdownCategoria" class="form-control" onchange="obtenerListaClubes(this.value);">
-                <option disabled selected value> -- seleccione una opción -- </option>
+                <option disabled selected value> -- seleccione una opción --</option>
             </select>
         </div>
         <div class="form-group">
-            <label>Club Deportivo <i id="advertencia4" class="fa fa-exclamation-triangle" aria-hidden="true" style="color: transparent"></i></label>
+            <label>Club Deportivo <i id="advertencia4" class="fa fa-exclamation-triangle" aria-hidden="true"
+                                     style="color: transparent"></i></label>
             <select id="dropdownClub" class="form-control">
-                <option disabled selected value> -- seleccione una opción -- </option>
+                <option disabled selected value> -- seleccione una opción --</option>
             </select>
         </div>
         <div class="form-group">
@@ -51,17 +65,19 @@ include "menuGlobal.php";
             <input id="tbFechaNacimiento" type="date" class="form-control">
         </div>
         <div class="form-group">
-            <label>Rol Jugador<i id="advertencia7" class="fa fa-exclamation-triangle" aria-hidden="true" style="color: transparent"></i></label>
+            <label>Rol Jugador<i id="advertencia7" class="fa fa-exclamation-triangle" aria-hidden="true"
+                                 style="color: transparent"></i></label>
             <input id="tbRolJugador" class="form-control" maxlength="30">
         </div>
         <div class="form-group">
-            <label>Rol ANDABA<i id="advertencia8" class="fa fa-exclamation-triangle" aria-hidden="true" style="color: transparent"></i></label>
+            <label>Rol ANDABA<i id="advertencia8" class="fa fa-exclamation-triangle" aria-hidden="true"
+                                style="color: transparent"></i></label>
             <input id="tbRolAndaba" class="form-control" maxlength="30">
         </div>
-<!--        <div class="form-group">-->
-<!--            <label>Ingrese foto del jugador</label>-->
-<!--            <input id="fotoJugador" type="file">-->
-<!--        </div>-->
+        <!--        <div class="form-group">-->
+        <!--            <label>Ingrese foto del jugador</label>-->
+        <!--            <input id="fotoJugador" type="file">-->
+        <!--        </div>-->
         <div class="form-group">
             <button id="btAceptar" type="button" class="btn btn-success" value="registrar">Aceptar</button>
         </div>
