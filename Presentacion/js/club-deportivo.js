@@ -14,6 +14,7 @@ $(document).ready(function () {
             obtenerJugadorSegunClub(document.getElementById("dropdownClub").value);
             document.getElementById("btMostrarOcultarJugadores").innerHTML = "Ocultar Lista de Jugadores"
         }
+        obtenerListaCategoria();
     });
     $('#btAceptarModalSolicitud').click(function () {
         if (document.getElementById("dropdownClub").value == "") {
@@ -21,6 +22,16 @@ $(document).ready(function () {
             return;
         }
         obtenerClubDeportivo(document.getElementById("dropdownClub").value)
+    });
+
+    $( "#dropdownCategoria").change(function() {
+        if ($(this).val() == 'todasLasCategorias'){
+            $("#listaJugadores").toggle('hide');
+            $('#cuerpoTabla').empty();
+            obtenerJugadorSegunClub(document.getElementById("dropdownClub").value);
+        }else {
+            filtrarJugadoresPorCategoriaClubDeportivo($(this).val(),document.getElementById("dropdownClub").value);
+        }
     });
 });
 
@@ -109,5 +120,49 @@ function obtenerJugadorSegunClub(rut) {
         });
         document.getElementById("btCargando").style.display = 'none';
         $("#listaJugadores").toggle('show');
+    });
+}
+
+function obtenerListaCategoria(){
+    $('#dropdownCategoria').append('<option selected value="todasLasCategorias"> -- Todas las Categorías -- </option>');
+    $.ajax({
+        type: "POST",
+        url: "../Logica/controlador-gestionar-club.php",
+        data: {
+            tipo: "obtenerListaCategoria"
+        }
+    }).done(function (data) {
+        var opts = $.parseJSON(data);
+        $.each(opts, function (i, d) {
+            $('#dropdownCategoria').append('<option value="' + d.codigoCategoria + '">' + d.nombreCategoria + '</option>');
+        });
+    });
+}
+
+function filtrarJugadoresPorCategoriaClubDeportivo(codigoCategoria,rutClubDeportivo) {
+    $.ajax({
+        type: "POST",
+        url: "../Logica/controlador-gestionar-club.php",
+        data: {
+            tipo: "obtenerJugadorSegunCategoriaClubDeportivo",
+            CodigoCategoria: codigoCategoria,
+            RutClub: rutClubDeportivo
+        }
+    }).done(function (data) {
+        $('#cuerpoTabla').empty();
+        var opts = $.parseJSON(data);
+        $.each(opts, function (i, d) {
+            $('#cuerpoTabla').append(
+                '<tr>' +
+                '<td>' + d.rutPersona + '</td>' +
+                '<td>' + d.nombrePersona + '</td>' +
+                '<td>' + d.nombreCategoria + '</td>' +
+                '<td>' + d.fechaNacimiento + '</td>' +
+                '<td>' + d.fechaInscripcion + '</td>' +
+                '<td>' + d.rolJugador + '</td>' +
+                '</tr>'
+            );
+        });
+        document.getElementById("btCargando").style.display = 'none';
     });
 }

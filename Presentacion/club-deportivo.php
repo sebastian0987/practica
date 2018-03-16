@@ -40,23 +40,21 @@ include "menuGlobal.php";
             <div class="panel-heading">
                 <h3 class="panel-title">Lista de Jugadores</h3>
             </div>
+
             <div class="panel-body">
                 <button id="btMostrarOcultarJugadores" type="button" class="btn btn-success">Mostrar Lista de Jugadores
                 </button>
                 <div id="listaJugadores" style="display: none">
-<!--                    <div class="input-group">-->
-<!--                        <span class="input-group-addon">Filtro</span> <input id="filter"-->
-<!--                                                                             type="text" class="form-control"-->
-<!--                                                                             placeholder="Escriba aqui...">-->
-<!--                    </div>-->
-<!--                    <br>-->
                     <!--Tabla para pnatallas normales-->
                     <table id="tablaGrande" class="table table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>Rut</th>
                             <th>Nombre</th>
-                            <th>Categoría</th>
+                            <th>
+                                <select id="dropdownCategoria" class="form-control">
+                                </select>
+                            </th>
                             <th>Fecha Nacimiento</th>
                             <th>Fecha Inscripción</th>
                             <th>Rol Jugador</th>

@@ -161,6 +161,19 @@ class query
         }
     }
 
+    public function getJugadorSegunCategoriaClubDeportivo($codigo,$rutClub)
+    {
+        try {
+            $this->bdConexion->conectar();
+            $strComando = "SELECT p.rutPersona,p.nombrePersona,j.fechaNacimiento,j.fechaInscripcion,j.rolJugador,c.nombreCategoria,cd.nombreClubDeportivo FROM persona p, jugador j, equipo e, clubdeportivo cd, categoria c WHERE c.codigoCategoria='" . $codigo . "' AND e.codigoCategoria=c.codigoCategoria AND e.rutClubDeportivo=cd.rutClubDeportivo AND cd.rutClubDeportivo='" . $rutClub . "' AND j.codigoEquipo = e.codigoEquipo AND j.rutJugador = p.rutPersona";
+            $resp = $this->bdConexion->ejecutarConRetorno($strComando);
+            $this->bdConexion->desconectar();
+            return $resp;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
 //---------------------Equipo-----------------------------
     public function getEquipo($categoria, $clubDeportivo)
     {

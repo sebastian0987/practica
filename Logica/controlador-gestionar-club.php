@@ -191,6 +191,16 @@ try {
                 echo "imagenLimpia";
             }
             break;
+        case 'obtenerListaCategoria' :
+            $respuesta = $conexion->getListaCategorias();
+            echo json_encode($respuesta);
+            break;
+        case 'obtenerJugadorSegunCategoriaClubDeportivo':
+            $codigo = $_POST["CodigoCategoria"];
+            $rut = $_POST["RutClub"];
+            $respuesta = $conexion->getJugadorSegunCategoriaClubDeportivo($codigo,$rut);
+            echo json_encode($respuesta);
+            break;
     }
 } catch (Exception $e) {
     echo $e;
