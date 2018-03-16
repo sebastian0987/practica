@@ -124,6 +124,7 @@ function obtenerJugadorSegunClub(rut) {
 }
 
 function obtenerListaCategoria(){
+    $('#dropdownCategoria').empty();
     $('#dropdownCategoria').append('<option selected value="todasLasCategorias"> -- Todas las Categorías -- </option>');
     $.ajax({
         type: "POST",
