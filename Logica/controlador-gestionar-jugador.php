@@ -73,14 +73,24 @@ try {
             }
             break;
         case 'modificar':
-            $rut = $_POST ["Rut"];
+            $rutOriginal = $_POST ["RutOriginal"];
+            $rutNuevo = $_POST ["RutNuevo"];
             $nombre = $_POST ["Nombre"];
             $equipo = $_POST ["Equipo"];
             $fechaNac = $_POST ["FechaNacimiento"];
             $fechaIns = $_POST ["FechaInscripcion"];
             $fechaSancion = $_POST ["FechaSancion"];
-            $conexion->updateJugador($rut, $equipo, $fechaNac, $fechaIns, $fechaSancion);
-            $conexion->updatePersona($rut, $nombre);
+            $rolJugador = $_POST ["RolJugador"];
+            $rolAndaba = $_POST ["RolAndaba"];
+            if ($rutNuevo != $rutOriginal){
+                $respuesta = $conexion->getJugador($rutNuevo);
+                if (count($respuesta) > 0) {
+                    echo "repetido";
+                    return;
+                }
+            }
+            $conexion->updateJugador($rutOriginal, $rutNuevo, $equipo, $fechaNac, $fechaIns, $fechaSancion, $rolJugador, $rolAndaba);
+            $conexion->updatePersona($rutOriginal, $rutNuevo, $nombre);
             echo "modificado";
             break;
         case 'obtenerSancion':

@@ -14,31 +14,28 @@ include "menuGlobal.php";
 </div>
 <div class="row">
     <div class="col-lg-3">
-        <div>
-            <label>RUT (Ingresar sin guion)<i id="advertencia2" class="fa fa-exclamation-triangle"
-                                              aria-hidden="true" style="color: transparent"></i></label>
-            <div class="input-group">
-                <input id="tbRut" type="text" class="form-control" placeholder="12345678k" maxlength="9">
-                <span class="input-group-btn">
+        <label>RUT (Ingresar sin guion)<i id="advertencia2" class="fa fa-exclamation-triangle"
+                                          aria-hidden="true" style="color: transparent"></i></label>
+        <div class="input-group">
+            <input id="tbRut" type="text" class="form-control" placeholder="12345678k" maxlength="50">
+            <span class="input-group-btn">
                 <button id="btVerificarRut" class="btn btn-info" type="button">Verificar</button>
             </span>
-            </div>
-            <br>
         </div>
+    </div>
+    <div class="col-lg-3">
+        <br>
+        <input type="checkbox" id="checkboxExtranjero"> Jugador Extranjero
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-3">
         <div class="form-group">
             <label>Nombre Completo <i id="advertencia1" class="fa fa-exclamation-triangle" aria-hidden="true"
                                       style="color: transparent"></i></label>
             <input id="tbNombre" class="form-control" placeholder="Andrés Aguilera Méndez" maxlength="50">
         </div>
-        <!--        <div class="form-group">-->
-        <!--            <label>Apellidos <i id="advertencia2" class="fa fa-exclamation-triangle" aria-hidden="true"></i></label>-->
-        <!--            <input id="tbApellidos" class="form-control" placeholder="Aguilera Méndez" maxlength="30">-->
-        <!--        </div>-->
-        <!--        <div class="form-group">-->
-        <!--            <label>RUT (Ingresar sin guion)<i id="advertencia2" class="fa fa-exclamation-triangle"-->
-        <!--                                              aria-hidden="true" style="color: transparent"></i></label>-->
-        <!--            <input id="tbRut" class="form-control" placeholder="12345678k" maxlength="9">-->
-        <!--        </div>-->
         <div class="form-group">
             <label>Categoria<i id="advertencia3" class="fa fa-exclamation-triangle" aria-hidden="true"
                                style="color: transparent"></i>

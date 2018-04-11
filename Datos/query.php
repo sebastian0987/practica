@@ -111,11 +111,11 @@ class query
         }
     }
 
-    public function updateJugador($rut, $equipo, $fechaNac, $fechaInsc, $fechaSancion)
+    public function updateJugador($rutOriginal, $rutNuevo, $equipo, $fechaNac, $fechaInsc, $fechaSancion, $rolJugador, $rolAndaba)
     {
         try {
             $this->bdConexion->conectar();
-            $strComando = "UPDATE jugador j SET j.codigoEquipo='" . $equipo . "', j.fechaNacimiento='" . $fechaNac . "',j.fechaInscripcion='" . $fechaInsc . "',j.sancion='" . $fechaSancion . "' WHERE j.rutJugador='" . $rut . "'";
+            $strComando = "UPDATE jugador j SET j.rutJugador='" . $rutNuevo . "',j.codigoEquipo='" . $equipo . "', j.fechaNacimiento='" . $fechaNac . "',j.fechaInscripcion='" . $fechaInsc . "',j.sancion='" . $fechaSancion . "',j.rolJugador='" . $rolJugador . "',j.rolANDABA='" . $rolAndaba . "' WHERE j.rutJugador='" . $rutOriginal . "'";
             $resp = $this->bdConexion->ejecutarSinRetorno($strComando);
             $this->bdConexion->desconectar();
         } catch (Exception $e) {
@@ -262,11 +262,11 @@ class query
         }
     }
 
-    public function updatePersona($rut, $nombre)
+    public function updatePersona($rutOriginal, $rutNuevo, $nombre)
     {
         try {
             $this->bdConexion->conectar();
-            $strComando = "UPDATE persona p SET p.nombrePersona='" . $nombre . "' WHERE p.rutPersona='" . $rut . "'";
+            $strComando = "UPDATE persona p SET p.rutPersona='" . $rutNuevo . "',p.nombrePersona='" . $nombre . "' WHERE p.rutPersona='" . $rutOriginal . "'";
             $resp = $this->bdConexion->ejecutarSinRetorno($strComando);
             $this->bdConexion->desconectar();
         } catch (Exception $e) {

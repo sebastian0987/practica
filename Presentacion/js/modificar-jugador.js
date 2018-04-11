@@ -1,6 +1,7 @@
 /**
  * Created by tatan on 14-02-2017.
  */
+var rutOriginal = '';
 $(document).ready(function () {
     solicitarRut();
     $("#tbNombre").keypress(function (e) {
@@ -13,11 +14,18 @@ $(document).ready(function () {
     });
     $("#btAceptar").click(function () {
         if (document.getElementById("tbNombre").value == ""
+            || document.getElementById("tbRut").value == ""
             || document.getElementById("dropdownCategoria").value == ""
             || document.getElementById("dropdownClub").value == ""
             || document.getElementById("tbFechaInscripcion").value == ""
             || document.getElementById("tbFechaNacimiento").value == "") {
             document.getElementById("pError").innerHTML = "Debe completar todos los campos para continuar.";
+            $('#modalMensaje').modal('show');
+            return;
+        }
+        if (!document.getElementById("checkboxExtranjero").checked && !validarRut(document.getElementById("tbRut").value)) {
+            document.getElementById("h4Error").innerHTML = "Error";
+            document.getElementById("pError").innerHTML = "El RUT ingresado no es valido.";
             $('#modalMensaje').modal('show');
             return;
         }
@@ -82,6 +90,14 @@ function obtenerJugador(rut) {
             $('#modalSolicitar').modal('hide');
             obtenerSancion(rut);
             obtenerListaCategorias();
+            //Se guarda el rut original en caso de que este sea modificado
+            rutOriginal = opts[0][0];
+            //Si el rut es valido se marca el checkbox
+            if (!validarRut(document.getElementById("tbRut").value)) {
+                $( "#checkboxExtranjero" ).prop( "checked", true );
+            }else {
+                $( "#checkboxExtranjero" ).prop( "checked", false );
+            }
         }
     });
 }
@@ -103,23 +119,28 @@ function obtenerCodigoEquipo(categoria, club) {
                 data,
                 document.getElementById("tbFechaNacimiento").value,
                 document.getElementById("tbFechaInscripcion").value,
-                document.getElementById("tbFechaSancion").value
+                document.getElementById("tbFechaSancion").value,
+                document.getElementById("tbRolJugador").value,
+                document.getElementById("tbRolAndaba").value
             );
         });
 }
 
-function modificarJugador(rut, nombre, codigoEquipo, fechaNacimiento, fechaInscripcion, fechaSancion) {
+function modificarJugador(rut, nombre, codigoEquipo, fechaNacimiento, fechaInscripcion, fechaSancion, rolJugador, rolANDABA) {
     $.ajax({
         type: "POST",
         url: "../Logica/controlador-gestionar-jugador.php",
         data: {
             tipo: "modificar",
-            Rut: rut,
+            RutOriginal: rutOriginal,
+            RutNuevo: rut,
             Nombre: nombre,
             Equipo: codigoEquipo,
             FechaNacimiento: fechaNacimiento,
             FechaInscripcion: fechaInscripcion,
-            FechaSancion: fechaSancion
+            FechaSancion: fechaSancion,
+            RolJugador: rolJugador,
+            RolAndaba: rolANDABA
         }
     })
         .done(function (data) {
@@ -127,17 +148,19 @@ function modificarJugador(rut, nombre, codigoEquipo, fechaNacimiento, fechaInscr
                 document.getElementById("encabezadoModalSolicitar").style.backgroundColor = "#DFF2BF";
                 document.getElementById("tituloModalSolicitud").innerHTML = "Éxito";
                 document.getElementById("mensajeModalSolicitud").innerHTML = "Las modificaciones del jugador fueron ingresadas exitosamente.";
-                document.getElementById("btAceptarModalSolicitud").innerHTML = "Modificar otro jugador"
+                document.getElementById("btAceptarModalSolicitud").innerHTML = "Modificar otro jugador";
                 document.getElementById("tbBuscarJugador").value = "";
                 document.getElementById("tbBuscarJugador").style.display = 'none';
                 document.getElementById("errorModalSolicitar").innerHTML = "";
                 $('#modalSolicitar').modal('show');
-                return;
             } else {
-                document.getElementById("h4Error").innerHTML = "Error";
-                document.getElementById("pError").innerHTML = "Han surgido problemas al intentar ingresar el jugador, por favor vuelva a intentarlo mas tarde.";
-                $('#modalMensaje').modal('show');
-                return;
+                if (data == "repetido") {
+                    obtenerDatosJugador(rut);
+                } else {
+                    document.getElementById("h4Error").innerHTML = "Error";
+                    document.getElementById("pError").innerHTML = "Han surgido problemas al intentar ingresar el jugador, vuelva a intentarlo mas tarde.";
+                    $('#modalMensaje').modal('show');
+                }
             }
         });
 }
@@ -204,4 +227,39 @@ function obtenerSancion(rut) {
     }).done(function (data) {
         document.getElementById("tbFechaSancion").value = data;
     });
+}
+
+function obtenerDatosJugador(rut) {
+    $.ajax({
+        type: "POST",
+        url: "../Logica/controlador-gestionar-jugador.php",
+        data: {
+            tipo: "obtenerJugador",
+            Rut:rut
+        }
+    }).done(function (data) {
+        var opts = $.parseJSON(data);
+        document.getElementById("h4Error").innerHTML = "Error";
+        document.getElementById("pError").innerHTML = "Ya existe un Jugador con el mismo rut en el sistema: " +
+            "Su nombre es " + opts[0].nombrePersona +
+            ", pertenece al club "+opts[0][9] +
+            " y esta inscrito en la categoría "+ opts[0][7] ;
+        $('#modalMensaje').modal('show');
+    });
+}
+
+function validarRut(rutCompleto) {
+    cantRut = rutCompleto.length - 1;
+    rut = rutCompleto.substr(0, cantRut);
+    digv = rutCompleto.substr(cantRut, rutCompleto.length);
+    if (digv == 'K')
+        digv = 'k';
+    var M = 0, S = 1, T = rut;
+    for (; T; T = Math.floor(T / 10))
+        S = (S + T % 10 * (9 - M++ % 6)) % 11;
+    if (S) {
+        return (S - 1 == digv);
+    } else {
+        return ('k' == digv);
+    }
 }

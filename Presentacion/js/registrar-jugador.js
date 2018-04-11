@@ -60,7 +60,7 @@ $(document).ready(function () {
         }
 
 
-        if (!validarRut(document.getElementById("tbRut").value)) {
+        if (!document.getElementById("checkboxExtranjero").checked && !validarRut(document.getElementById("tbRut").value)) {
             document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
             document.getElementById("h4Error").innerHTML = "Error";
             document.getElementById("pError").innerHTML = "El RUT ingresado no es valido.";
@@ -88,7 +88,7 @@ $(document).ready(function () {
 
     $('#btVerificarRut').click(function () {
         if (document.getElementById("tbRut").value != "") {
-            if (!validarRut(document.getElementById("tbRut").value)) {
+            if (!document.getElementById("checkboxExtranjero").checked && !validarRut(document.getElementById("tbRut").value)) {
                 document.getElementById("encabezadoModalMensaje").style.backgroundColor = "#FFBABA";
                 document.getElementById("h4Error").innerHTML = "Error";
                 document.getElementById("pError").innerHTML = "El RUT ingresado no es valido.";

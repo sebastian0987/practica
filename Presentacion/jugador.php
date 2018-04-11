@@ -74,7 +74,7 @@ include "menuGlobal.php";
                 <form>
                     <div class="form-group">
                         <label id="mensajeModalSolicitud" for="recipient-name" class="form-control-label">Ingrese RUT del jugador:</label>
-                        <input id="tbBuscarJugador" type="text" class="form-control" placeholder="12345678k" maxlength="9">
+                        <input id="tbBuscarJugador" type="text" class="form-control" placeholder="12345678k" maxlength="50">
                         <label id="errorModalSolicitar" style="color:red;"></label>
                     </div>
                 </form>
