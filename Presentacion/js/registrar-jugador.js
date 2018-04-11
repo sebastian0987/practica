@@ -294,5 +294,6 @@ function limpiarCampos() {
     obtenerListaCategorias();
     $('#dropdownClub').empty();
     $('#dropdownClub').append('<option disabled selected value> -- seleccione una opción -- </option>');
+    $( "#checkboxExtranjero" ).prop( "checked", false );
     // document.getElementById("fotoJugador").value = "";
 }
